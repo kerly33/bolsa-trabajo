@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    
+    <context-param>
+        <param-name>reg_pagina</param-name>
+     <param-value>4</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dir_user_registrados</param-name>
+        <param-value>/perfil_registrado/dir_users</param-value>
+    </context-param>
+    
+    
+    <context-param>
+        <param-name>conectorjdbc</param-name>
+        <param-value>org.mariadb.jdbc.Driver</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>loginjdbc</param-name>
+        <param-value>kerly21</param-value>
+    </context-param>
+    <context-param>
+        <param-name>passjdbc</param-name>
+        <param-value>1234</param-value>
+    </context-param>
+    <context-param>
+        <param-name>urljdbc</param-name>
+        <param-value>jdbc:mariadb://192.168.1.135:3306/asir2</param-value>
+    </context-param>
+     <!--   
+    <context-param>
+        <param-name>loginjdbc</param-name>
+        <param-value>asir2015</param-value>
+    </context-param>
+    <context-param>
+        <param-name>passjdbc</param-name>
+        <param-value>asir2015</param-value>
+    </context-param>
+    <context-param>
+         <param-name>urljdbc</param-name>
+          <param-value>jdbc:mysql://52.48.142.122:3306/ut6_quesada</param-value>
+    </context-param>
+    -->
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+	<welcome-file>
+            index.jsp
+        </welcome-file>
+    </welcome-file-list>
+</web-app>

@@ -1,0 +1,143 @@
+/*********************************************************************
+********************************************************************* 
+Proyecto de Innovaci�n
+Autor: Juan Antonio L�pez Quesada 
+Asignatura: FISIOTERAPIA ESPECIAL: PATOLOG�AS DEL SISTEMA NERVIOSO [08/09] 
+Departamento de Fisioterapia - Universidad de Murcia.
+*********************************************************************
+*********************************************************************/
+
+body {
+	margin:0em;
+	padding:0.5em;
+	font-family:Arial, Verdana, Helvetica, sans-serif;
+	font-size:0.9em;
+}
+
+#documento_asignatura {
+	background-color:#fff;
+	width:750px;
+	border:1px solid #ddd;
+	margin:auto;
+	background:url(../imagenes/fondo-umu.jpg) -10em 27em no-repeat;
+}
+
+#cabecera {
+	/*background:#317184 url(none) no-repeat 100%;*/
+	background:#C0455E url(../imagenes/cabecera1.jpg) no-repeat 100%;
+	border-top:5px solid #ddd;
+	border-bottom:5px solid #ddd;
+	width:100%;
+	height:140px;
+}
+
+.titulo_asignatura {
+	width:300px;
+	color:#fff;
+	margin:0px;
+	font-size:1.10em;
+	font-weight:bolder;
+	padding:20px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+	vertical-align: baseline;
+	background-image: none;
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+.titulo_asignaturaI {
+	width:260px;
+	color:#fff;
+	margin:0px;
+	font-size:0.8em;
+	font-weight:bolder;
+	padding-left:20px;
+	padding-top:10px;
+	text-align:center top;
+}
+
+#menu {
+	font-size:0.8em;
+	margin-top:5px;
+	width:200px;
+	float:left;
+	background:url(../imagenes/lateral-menu.gif) no-repeat right top;
+}
+
+#menu a {
+	/*color:#317184;*/
+	color:#C0455E;
+	text-decoration:none;
+	display:block;
+	padding:5px;
+	font-weight:bolder;
+}
+
+#menu a:hover {
+	/*color:#317184;*/
+	color:#C0455E;
+	/*background-color:#DFEEF1;*/
+	background-color:#F2DBDF;
+}
+
+#menu ul {
+	padding:0px;
+	margin:0px;
+	margin-left:0px; 
+}
+
+#menu li {
+	list-style-type:none;
+	margin:0px;
+	padding:2px;
+	border-bottom:1px dotted #eee;
+}
+
+#contenido {
+	margin-left:200px;
+	padding:10px;
+	font-size:0.9em;
+	text-align: justify;
+}
+
+#contenido h1 {
+	color:#317184;
+	font-size:2em;
+	border-bottom:1px solid #DFEEF1;
+}
+
+#contenido h2 {
+	color:#317184;
+	font-size:1.4em;
+	border-bottom:1px solid #DFEEF1;
+}
+
+#contenido li {
+	margin-bottom:0.5em;
+}
+
+#pie {
+	background:#ccc;
+	width:100%;
+	clear:both;
+}
+
+#pie p {
+	text-align:center;
+	font-size:0.75em;
+	color:#333;
+	margin:0px;
+	padding:2px;
+}
+
+.bloque {
+	background-color:#D1E9E9;
+	padding:5px;
+}
+
+.bloque_localizacion {
+	background-color:#FFFFFF;
+	padding:5px;
+	text-align: center;	
+}
