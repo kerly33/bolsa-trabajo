@@ -113,7 +113,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
   </div>  <!-- <div id="menu"> -->
 	
 	<div id="contenido">
-			  <h1>Web personal <em>del Prof. Juan Antonio L�pez Quesada. </em></h1>
+			  <h1>Web personal <em>de Kerly V. Cornejo Patiño </em></h1>
 			                  
         <%        
         String urljdbc;

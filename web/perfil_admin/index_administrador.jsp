@@ -46,8 +46,8 @@ Departamento de Fisioterapia - Universidad de Murcia.
 		  <%=login%>
 		</strong></p>
 		<p class="titulo_asignaturaI"> <strong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
-	    Departamento de Inform�tica<br> 
-	    Universidad de Murcia </strong> </p>
+                            Departamento de Inform&aacute;tica<br> 
+	    Proyecto ASIR (IAW) </strong> </p>
   </div> <!-- <div id="cabecera">  -->
 
 	<div id="menu">
@@ -126,7 +126,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	</div> <!-- <div id="contenido"> -->
 		
 	<div id="pie">
-			<p>Departamento de Inform�tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
+            <p>Departamento de Inform&aacute;tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
 	</div> </div> 
 <!-- <div id="documento"> -->
 
