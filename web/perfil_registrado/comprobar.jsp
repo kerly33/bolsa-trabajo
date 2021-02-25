@@ -34,7 +34,7 @@
                    if (Integer.valueOf(sentencia_sql.getString("activo")).intValue()==1)
                    {    
                        datossesion.setAttribute("login",sentencia_sql.getString("email"));
-                       datossesion.setAttribute("perfil",new Integer(sentencia_sql.getString("PERFIL")));
+                       datossesion.setAttribute("perfil",new Integer(sentencia_sql.getString("perfil")));
                        datossesion.setAttribute("id_nombre",sentencia_sql.getString("nombre"));
                        if(rec!=null)
                        {

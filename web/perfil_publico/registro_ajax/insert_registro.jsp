@@ -17,11 +17,13 @@
         StringBuffer built_stmt1=new StringBuffer();
         StringBuffer correo=new StringBuffer();
         //************************************************
-        String login=request.getParameter("email");
+        String email=request.getParameter("email");
         String c2=request.getParameter("password");
         String c3=request.getParameter("activo");
         String c4=request.getParameter("perfil");
         String c5=request.getParameter("nombre");
+        String c6=request.getParameter("apellidos");
+        
         //*************************************************
         int estado=0;
         //**************************************************   
@@ -55,7 +57,7 @@
                /**************************************************/
                // Paso 1.- Insertar :  hexString.toString() - pass en md5
                /**************************************************/
-               built_stmt.append("insert into registrado values ('"+login+"','"+c2+"','"+c3+"','"+c4+"',STR_TO_DATE('"+c5+"','%d/%m/%Y'),SYSDATE(),0,1)");
+               built_stmt.append("insert into registrado values ('"+email+"','"+c2+"','"+c3+"','"+c4+",'"+c5+"','"+c6+"'");
                sentencia.execute(built_stmt.toString());
                sentencia.close();
                estado=0;
@@ -70,7 +72,7 @@
                try
                {
                     String dirUpload = getServletContext().getRealPath( getServletContext().getInitParameter("dir_user_registrados" ) ); 
-                    File directorio_raiz_user=new File(dirUpload+"/"+login);
+                    File directorio_raiz_user=new File(dirUpload+"/"+email);
                     if (!directorio_raiz_user.exists())
                     {
                         directorio_raiz_user.mkdir();
@@ -96,11 +98,11 @@
                         // Creación del mensaje
                         MimeMessage message = new MimeMessage(s);
                         message.setFrom(new InternetAddress("nitrisimo@gmail.com"));
-                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(login));
+                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
                         message.setSubject("Proceso de Activación");
                         StringBuffer texto=new StringBuffer();
                         texto.append("Realiza la activación...");
-                        texto.append("Copia la siguiente dirección: http://localhost:8084/BolsaTrabajo/perfil_registrado/activa_user.jsp?login="+login);
+                        texto.append("Copia la siguiente dirección: http://localhost:8084/BolsaTrabajo/perfil_registrado/activa_user.jsp?login="+email);
                         texto.append("Te aparecerá un formulario de validación (login/password) que deberás rellenar");
                         message.setText(texto.toString());
                         // Envio del mensaje de correo electrónico

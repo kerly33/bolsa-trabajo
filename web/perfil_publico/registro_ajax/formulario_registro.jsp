@@ -12,7 +12,7 @@ Asignatura: FISIOTERAPIA ESPECIAL: PATOLOG�AS DEL SISTEMA NERVIOSO [08/09]
 Departamento de Fisioterapia - Universidad de Murcia.
 --><head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<title>Web Personal: Juan Antonio L�pez Quesada -INFORM�TICA-</title>
+<title>Web: Bolsa de Trabajo -INFORM&Aacute;TICA-</title>
 <!-- C�digo del Icono -->
 <!-- <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" /> -->
 <link href="../../index_files/proyectoinnovacion.css" rel="stylesheet" type="text/css">
@@ -41,7 +41,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
                   return false;
                }  
             }       
-       </script>
+       </script>-->
 
        <script type="text/javascript">
         var READY_STATE_COMPLETE=4;
@@ -124,11 +124,11 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	
 	<div id="cabecera"> 
 		<p class="titulo_asignatura"> <strong>Web Personal:<br>
-		  Juan Ant� L�pez Quesada
+		  Kerly V. Cornejo Pati&ntilde;o
 		</strong></p>
-		<p class="titulo_asignaturaI"> <strong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
-	    Departamento de Inform�tica<br> 
-	    Universidad de Murcia </strong> </p>
+		<p class="titulo_asignaturaI"> I.E.S. San Juan Bosco (Lorca-Murcia)<br>
+                        Departamento de Inform&aacute;tica<br> 
+                        Universidad de Murcia </p>
   </div> <!-- <div id="cabecera">  -->
 
 	<div id="menu">
@@ -145,7 +145,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
          <caption><h1>Registro de un usuario</h1></caption>
         <fieldset>
             <legend>Datos</legend> 
-        Login: <input type="text" id="login" name="login" value="" /> 
+        Email: <input type="text" id="email" name="email" value="" /> 
        
         <a id="comprobar" href="#">Comprobar disponibilidad...</a><br />
         <!--  Capa manipulada por AJAX -->
@@ -153,21 +153,22 @@ Departamento de Fisioterapia - Universidad de Murcia.
 
         <input type="hidden" name="login_valido" id="login_valido" value="no_ok" />
         
-         Pass: <input type="password" name="pass" value="" /> <br>
+         Password: <input type="password" name="pass" value="" /> <br>
          Nombre: <input type="text" name="nombre" value="" /> <br>
          Apellidos: <input type="text" name="apellido" value="" /> <br>
-         Fecha Nacimiento: <input type="text" readonly="readonly" name="fecha_nacimiento" id="campo_fecha" />
-         <input type="button" id="lanzador" value="..." /><br>
+         
+        <!-- Fecha Nacimiento: <input type="text" readonly="readonly" name="fecha_nacimiento" id="campo_fecha" />
+         <input type="button" id="lanzador" value="..." /><br> -->
         </fieldset>
          
         <!-- script que define y configura el calendario-->
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             Calendar.setup({
                 inputField     :    "campo_fecha",      // id del campo de texto
                 ifFormat       :    "%d/%m/%Y",       // formato de la fecha, cuando se escriba en el campo de texto
                 button         :    "lanzador"   // el id del botón que lanzará el calendario
             });
-        </script>
+        </script>-->
         <fieldset>
             <legend>POLITICA DE PRIVACIDAD, SEGURIDAD Y CONFIDENCIALIDAD</legend>
          <textarea name="Teminos_uso" rows="10" cols="50">
@@ -199,7 +200,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	</div> <!-- <div id="contenido"> -->
 		
 	<div id="pie">
-			<p>Departamento de Inform�tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
+			<p>Departamento de Inform&aacute;tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
 	</div> </div> 
 <!-- <div id="documento"> -->
 

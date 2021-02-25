@@ -22,7 +22,7 @@
               passjdbc = getServletContext().getInitParameter("passjdbc"); 
               conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
               sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
-              built_stmt.append("select * from registrado where login='"+c1+"'");
+              built_stmt.append("select * from usuarios where login='"+c1+"'");
               sentencia_sql= sentencia.executeQuery(built_stmt.toString());
               if (sentencia_sql.next())
               {  

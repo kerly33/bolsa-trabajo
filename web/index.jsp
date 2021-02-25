@@ -14,6 +14,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>Web: Bolsa de Trabajo -INFORM&Aacute;TICA-</title>
+    
 <!-- C�digo del Icono -->
 <!-- <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" /> -->
 <link href="index_files/proyectoinnovacion.css" rel="stylesheet" type="text/css">
@@ -34,14 +35,16 @@ Departamento de Fisioterapia - Universidad de Murcia.
 		<p class="titulo_asignatura"> <strong>Web Personal:<br>
 		  Kerly V. Cornejo Pati&ntilde;o
 		</strong></p>
-		<p class="titulo_asignaturaI"> <strong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
+		<p class="titulo_asignaturaI"> I.E.S. San Juan Bosco (Lorca-Murcia)<br>
                             Departamento de Inform&aacute;tica<br> 
-	    Proyecto ASIR (IAW)</strong> </p>
+                            Proyecto ASIR (IAW) </p>
+            <a <img scr="" width="" height="" alt="" /> </a>
+        
   </div> <!-- <div id="cabecera">  -->
 
 	<div id="menu">
 	  <ul>
-		  <li><a href="perfil_publico/registro_ajax/formulario_registro.jsp">Resgitro</a></li>	  
+		  <li><a href="perfil_publico/registro_ajax/formulario_registro.jsp">Resgitrarse</a></li>	  
 	  </ul>
          <form action="perfil_registrado/comprobar.jsp" method="get">  
         <table width="104%"  border="0" align="left">

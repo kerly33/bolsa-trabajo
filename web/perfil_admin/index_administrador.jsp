@@ -52,7 +52,11 @@ Departamento de Fisioterapia - Universidad de Murcia.
 
 	<div id="menu">
 	  <ul>
-		  <li><a href="ver_perfil">Administrar Usuarios</a></li>	  
+		  <li><a href="">Administrar Usuarios</a></li>
+                  <li><a href="">Administrar Empresa</a></li>
+                  <li><a href="">Administrar Oferta</a></li>
+                  <li><a href="">Administrar Noticias</a></li>
+                  <li><a href="">Administrar Documentos</a></li>
 	  </ul>
               
   </div>  <!-- <div id="menu"> -->
