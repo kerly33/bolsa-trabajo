@@ -46,7 +46,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 		<p class="titulo_asignatura"> <strong>Web Personal:<br>
 		  <%=login%>
 		</strong></p>
-		<p class="titulo_asignaturaI"> <strong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
+		<p class="titulo_asignaturaI">ong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
 	    Departamento de Inform�tica<br> 
 	    Universidad de Murcia </strong> </p>
   </div> <!-- <div id="cabecera">  -->
