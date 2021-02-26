@@ -3,8 +3,8 @@
 <%@page import="java.security.MessageDigest"%>
 <%
         String urljdbc; 
-        String loginjdbc; 
-        String passjdbc; 
+        String emailjdbc; 
+        String passwordjdbc; 
         //********************************
         Connection conexion=null;
         //*********************************
@@ -31,9 +31,9 @@
             {
               Class.forName("org.mariadb.jdbc.Driver");
               urljdbc = getServletContext().getInitParameter("urljdbc"); 
-               loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
-               passjdbc = getServletContext().getInitParameter("passjdbc"); 
-               conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
+               emailjdbc = getServletContext().getInitParameter("emailjdbc"); 
+               passwordjdbc = getServletContext().getInitParameter("passwordjdbc"); 
+               conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
                sentencia=conexion.createStatement();
                /**************************************************/
                // Paso 0.- Hashing String with MD5 

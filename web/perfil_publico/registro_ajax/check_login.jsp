@@ -1,8 +1,8 @@
 <%@page import="java.lang.*,java.util.*,java.sql.*"%>
 <%
         String urljdbc; 
-        String loginjdbc; 
-        String passjdbc; 
+        String emailjdbc; 
+        String passwordjdbc; 
         //********************************
         Connection conexion=null;
         //*********************************
@@ -12,17 +12,17 @@
         //*********************************
         StringBuffer built_stmt=new StringBuffer();
         //*****************************************
-        String c1=request.getParameter("login");
+        String c1=request.getParameter("email");
         //**************************************************
             try
             {
               Class.forName("org.mariadb.jdbc.Driver");
               urljdbc = getServletContext().getInitParameter("urljdbc"); 
-              loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
-              passjdbc = getServletContext().getInitParameter("passjdbc"); 
-              conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
+              emailjdbc = getServletContext().getInitParameter("emailjdbc"); 
+              passwordjdbc = getServletContext().getInitParameter("passwordjdbc"); 
+              conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
               sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
-              built_stmt.append("select * from usuarios where login='"+c1+"'");
+              built_stmt.append("select * from usuarios where email='"+c1+"'");
               sentencia_sql= sentencia.executeQuery(built_stmt.toString());
               if (sentencia_sql.next())
               {  

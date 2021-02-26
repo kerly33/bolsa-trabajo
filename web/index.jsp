@@ -38,7 +38,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 		<p class="titulo_asignaturaI"> I.E.S. San Juan Bosco (Lorca-Murcia)<br>
                             Departamento de Inform&aacute;tica<br> 
                             Proyecto ASIR (IAW) </p>
-            <a <img scr="" width="" height="" alt="" /> </a>
+            <a <img scr="C:\Users\kerly\Documents\bbdd.jpg" width="800" height="414" alt="bbdd" /> </a>
         
   </div> <!-- <div id="cabecera">  -->
 
@@ -120,8 +120,8 @@ Departamento de Fisioterapia - Universidad de Murcia.
 			                  
         <%        
         String urljdbc;
-        String loginjdbc;
-        String passjdbc;
+        String emailjdbc;
+        String passwordjdbc;
         Connection conexion=null;
         Statement sentencia=null;
         ResultSet sentencia_sql=null;
@@ -130,9 +130,9 @@ Departamento de Fisioterapia - Universidad de Murcia.
         {
             Class.forName("org.mariadb.jdbc.Driver");
             urljdbc = getServletContext().getInitParameter("urljdbc"); 
-            loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
-            passjdbc = getServletContext().getInitParameter("passjdbc");
-            conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
+            emailjdbc = getServletContext().getInitParameter("loginjdbc"); 
+            passwordjdbc = getServletContext().getInitParameter("passjdbc");
+            conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
             sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
             sentencia_sql=sentencia.executeQuery("select * from noticias where publico=0");            
             while(sentencia_sql.next())

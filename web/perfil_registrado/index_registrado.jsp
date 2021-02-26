@@ -2,11 +2,11 @@
 <%@page import="java.lang.*,java.util.*,java.sql.*"%>
 <%
     HttpSession datossesion=request.getSession();
-    String login=(String)datossesion.getAttribute("login");
+    String email=(String)datossesion.getAttribute("email");
     Integer perfil=(Integer)datossesion.getAttribute("perfil");
     String nombre=(String)datossesion.getAttribute("id_nombre");
     
-    if (login==null || perfil.intValue()==1)
+    if (email==null || perfil.intValue()==1)
     {
         datossesion.invalidate();
 %>
@@ -44,7 +44,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	
 	<div id="cabecera"> 
 		<p class="titulo_asignatura"> <strong>Web Personal:<br>
-		  <%=login%>
+		  <%=email%>
 		</strong></p>
 		<p class="titulo_asignaturaI">ong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
 	    Departamento de Inform�tica<br> 
@@ -59,12 +59,12 @@ Departamento de Fisioterapia - Universidad de Murcia.
   </div>  <!-- <div id="menu"> -->
 	
 	<div id="contenido">
-			  <h1>Web personal <em>del Prof. Juan Antonio L�pez Quesada. </em></h1>
+			  <h1>Web personal <em>de Kerly V. Cornejo Patiño </em></h1>
 			                  
         <%        
         String urljdbc;
-        String loginjdbc;
-        String passjdbc;
+        String emailjdbc;
+        String passwordjdbc;
         Connection conexion=null;
         Statement sentencia=null;
         ResultSet sentencia_sql=null;
@@ -73,9 +73,9 @@ Departamento de Fisioterapia - Universidad de Murcia.
         {
             Class.forName("org.mariadb.jdbc.Driver");
             urljdbc = getServletContext().getInitParameter("urljdbc"); 
-            loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
-            passjdbc = getServletContext().getInitParameter("passjdbc");
-            conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
+            emailjdbc = getServletContext().getInitParameter("loginjdbc"); 
+            passwordjdbc = getServletContext().getInitParameter("passjdbc");
+            conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
             sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
             sentencia_sql=sentencia.executeQuery("select * from noticias where publico=1");            
             while(sentencia_sql.next())
@@ -127,7 +127,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	</div> <!-- <div id="contenido"> -->
 		
 	<div id="pie">
-			<p>Departamento de Inform�tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
+			<p>Departamento de Inform&aacute;tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
 	</div> </div> 
 <!-- <div id="documento"> -->
 

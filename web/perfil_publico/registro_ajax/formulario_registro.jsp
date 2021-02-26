@@ -31,7 +31,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
          <script language="javascript" type="text/javascript">  
             function Valida(formulario)
             { 
-               if (formulario.login_valido.value == 'ok') 
+               if (formulario.email_valido.value == 'ok') 
                {
                   return true;
                } 
@@ -56,14 +56,14 @@ Departamento de Fisioterapia - Universidad de Murcia.
         }
 
         function comprobar() {
-                var login = document.getElementById("login").value;
+                var email = document.getElementById("email").value;
                 peticion_http = inicializa_xhr();
                 if(peticion_http) {
                         peticion_http.onreadystatechange = procesaRespuesta;
-                        peticion_http.open("POST", "check_login.jsp", true);
+                        peticion_http.open("POST", "check_email.jsp", true);
 
                         peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        peticion_http.send("login="+login);
+                        peticion_http.send("email="+email);
                        
                 }
         }
@@ -71,7 +71,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
         function procesaRespuesta() {
                 if(peticion_http.readyState == READY_STATE_COMPLETE) {
                         if (peticion_http.status == 200) {
-                                var login = document.getElementById("login").value;
+                                var email = document.getElementById("email").value;
                                 var respuesta= peticion_http.responseText;
                                 alert(respuesta);
                                 
@@ -93,12 +93,12 @@ Departamento de Fisioterapia - Universidad de Murcia.
                                 (es decir, la posición inicio está incluida y la posición final no):*/
 
                                 if(estado_respuesta=="si") {
-                                        document.getElementById("disponibilidad").innerHTML = "El nombre elegido ["+login+"] está disponible";
-                                        document.getElementById("login_valido").value="ok";
+                                        document.getElementById("disponibilidad").innerHTML = "El nombre elegido ["+email+"] está disponible";
+                                        document.getElementById("email_valido").value="ok";
                                 }
                                 else {
-                                        document.getElementById("disponibilidad").innerHTML = "NO está disponible el nombre elegido ["+login+"]";
-                                        document.getElementById("login_valido").value="no_ok";
+                                        document.getElementById("disponibilidad").innerHTML = "NO está disponible el nombre elegido ["+email+"]";
+                                        document.getElementById("email_valido").value="no_ok";
                                 }
                         }
                 }
@@ -151,7 +151,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
         <!--  Capa manipulada por AJAX -->
         <div style="hidden" id="disponibilidad"></div>  
 
-        <input type="hidden" name="login_valido" id="login_valido" value="no_ok" />
+        <input type="hidden" name="email_valido" id="login_valido" value="no_ok" />
         
          Password: <input type="password" name="pass" value="" /> <br>
          Nombre: <input type="text" name="nombre" value="" /> <br>

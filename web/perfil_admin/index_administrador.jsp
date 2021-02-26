@@ -2,10 +2,10 @@
 <%@page import="java.lang.*,java.util.*,java.sql.*"%>
 <%
     HttpSession datossesion=request.getSession();
-    String login=(String)datossesion.getAttribute("login");
+    String email=(String)datossesion.getAttribute("email");
     Integer perfil=(Integer)datossesion.getAttribute("perfil");
     
-    if (login==null || perfil.intValue()==0)
+    if (email==null || perfil.intValue()==0)
     {
         datossesion.invalidate();
 %>
@@ -43,11 +43,11 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	
 	<div id="cabecera"> 
 		<p class="titulo_asignatura"> <strong>Web Personal:<br>
-		  <%=login%>
+		  <%=email%>
 		</strong></p>
-		<p class="titulo_asignaturaI"> <strong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
+		<p class="titulo_asignaturaI"> I.E.S. San Juan Bosco (Lorca-Murcia)<br>
                             Departamento de Inform&aacute;tica<br> 
-	    Proyecto ASIR (IAW) </strong> </p>
+                            Proyecto ASIR (IAW) </p>
   </div> <!-- <div id="cabecera">  -->
 
 	<div id="menu">
@@ -62,12 +62,12 @@ Departamento de Fisioterapia - Universidad de Murcia.
   </div>  <!-- <div id="menu"> -->
 	
 	<div id="contenido">
-			  <h1>Web personal <em>del Prof. Juan Antonio L�pez Quesada. </em></h1>
+			  <h1>Web personal <em>del Prof. Juan Antonio Lpez Quesada. </em></h1>
 			                  
         <%        
         String urljdbc;
-        String loginjdbc;
-        String passjdbc;
+        String emailjdbc;
+        String passwordjdbc;
         Connection conexion=null;
         Statement sentencia=null;
         ResultSet sentencia_sql=null;
@@ -76,9 +76,9 @@ Departamento de Fisioterapia - Universidad de Murcia.
         {
             Class.forName("org.mariadb.jdbc.Driver");
             urljdbc = getServletContext().getInitParameter("urljdbc"); 
-            loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
-            passjdbc = getServletContext().getInitParameter("passjdbc");
-            conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
+            emailjdbc = getServletContext().getInitParameter("emailjdbc"); 
+            passwordjdbc = getServletContext().getInitParameter("passwordjdbc");
+            conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
             sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
             sentencia_sql=sentencia.executeQuery("select * from noticias where publico=1");            
             while(sentencia_sql.next())

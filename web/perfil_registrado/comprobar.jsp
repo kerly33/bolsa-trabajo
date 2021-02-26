@@ -3,8 +3,8 @@
         HttpSession datossesion=request.getSession();
         //********************************
         String urljdbc; 
-        String loginjdbc; 
-        String passjdbc; 
+        String emailjdbc; 
+        String passwordjdbc; 
         //********************************
         Connection conexion=null;
         //*********************************
@@ -14,8 +14,8 @@
         //*********************************
         StringBuffer built_stmt=new StringBuffer();
         //*****************************************
-        String login=request.getParameter("login");
-        String pass=request.getParameter("pass");
+        String email=request.getParameter("email");
+        String password=request.getParameter("password");
         String rec=request.getParameter("rec"); 
         int error=-1;
         //**************************************************
@@ -23,22 +23,22 @@
             {
               Class.forName("org.mariadb.jdbc.Driver");
               urljdbc = getServletContext().getInitParameter("urljdbc"); 
-              loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
-              passjdbc = getServletContext().getInitParameter("passjdbc"); 
-              conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
+              emailjdbc = getServletContext().getInitParameter("loginjdbc"); 
+              passwordjdbc = getServletContext().getInitParameter("passjdbc"); 
+              conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
               sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
-              built_stmt.append("select * from registrado where login='"+login+"' and pass='"+pass+"'");
+              built_stmt.append("select * from registrado where login='"+email+"' and pass='"+password+"'");
               sentencia_sql= sentencia.executeQuery(built_stmt.toString());
               if (sentencia_sql.next())
               {  
                    if (Integer.valueOf(sentencia_sql.getString("activo")).intValue()==1)
                    {    
-                       datossesion.setAttribute("login",sentencia_sql.getString("email"));
+                       datossesion.setAttribute("email",sentencia_sql.getString("email"));
                        datossesion.setAttribute("perfil",new Integer(sentencia_sql.getString("perfil")));
                        datossesion.setAttribute("id_nombre",sentencia_sql.getString("nombre"));
                        if(rec!=null)
                        {
-                                   Cookie miCookie=new Cookie("login",sentencia_sql.getString("LOGIN"));
+                                   Cookie miCookie=new Cookie("email",sentencia_sql.getString("EMAIL"));
                                    miCookie.setMaxAge(60*60*24*31);
                                    miCookie.setPath("/");
                                    response.addCookie(miCookie);

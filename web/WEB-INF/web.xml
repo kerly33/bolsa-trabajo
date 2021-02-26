@@ -26,7 +26,7 @@
     </context-param>
     <context-param>
         <param-name>urljdbc</param-name>
-        <param-value>jdbc:mariadb://192.168.2.135:3306/asir2</param-value>
+        <param-value>jdbc:mariadb://192.168.1.135:3306/asir2</param-value>
     </context-param>
      <!--   
     <context-param>
