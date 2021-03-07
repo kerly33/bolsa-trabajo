@@ -5,21 +5,22 @@
     String login=(String)datossesion.getAttribute("login");
     Integer perfil=(Integer)datossesion.getAttribute("perfil");
     
-    if (login==null || perfil.intValue()==1)
+    if (login==null || perfil.intValue()==0)
     {
         datossesion.invalidate();
 %>
         <script language="JavaScript">
-            location.href="../index.jsp?error=3"
+            location.href="../index.jsp?error=4"
         </script>
 <%
     }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- 
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<title>Web: Bolsa de Trabajo -INFORM&Aacute;TICA</title>
+<title>Web Personal: Juan Antonio L�pez Quesada -INFORM�TICA-</title>
 <!-- C�digo del Icono -->
 <!-- <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" /> -->
 <link href="../index_files/proyectoinnovacion.css" rel="stylesheet" type="text/css">
@@ -40,30 +41,20 @@
 		<p class="titulo_asignatura"> <strong>Web Personal:<br>
 		  <%=login%>
 		</strong></p>
-		<p class="titulo_asignaturaI">ong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
+		<p class="titulo_asignaturaI"> <strong>I.E.S. San Juan Bosco (Lorca-Murcia)<br>
 	    Departamento de Inform�tica<br> 
 	    Universidad de Murcia </strong> </p>
   </div> <!-- <div id="cabecera">  -->
 
 	<div id="menu">
 	  <ul>
-		  <li><a href="../index.jsp">Inicio</a></li>
-                  <li><a href="">Noticias</a></li>
-                  <li><a href="">Editar</a></li>
+		  <li><a href="admin_usuarios.jsp">Administrar Usuarios</a></li>	  
 	  </ul>
               
   </div>  <!-- <div id="menu"> -->
 	
 	<div id="contenido">
-			  <h1>Web personal <em>de Kerly V. Cornejo Patiño </em></h1>
-                          
-        <div class="bloque">
-            <p><br>Hola</br> alumna del <a href=""><em>IES San Juan Bosco</em></a>
-            <table width="50%" border="0" aling="center"></table>
-            </div>
-                <!-- <div class="bloque">-->
-                
-        </div>  <!-- <div id="contenido">-->
+			  <h1>Web personal <em>del Prof. Juan Antonio L�pez Quesada. </em></h1>
 			                  
         <%        
         String urljdbc;
@@ -73,28 +64,61 @@
         Statement sentencia=null;
         ResultSet sentencia_sql=null;
         //************************************//
-        try {
+        try
+        {
             Class.forName("org.mariadb.jdbc.Driver");
             urljdbc = getServletContext().getInitParameter("urljdbc"); 
             loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
             passjdbc = getServletContext().getInitParameter("passjdbc");
             conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
             sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
-            sentencia_sql=sentencia.executeQuery("select * from noticias where publico=1");            
+            sentencia_sql=sentencia.executeQuery("select * from usuarios");            
+        %>
+        <table border="1">
+            <tr>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Borrar</th>
+                <th>Activar</th>
+                <th>Desactivar</th>
+                <th>Estado</th>
+            </tr>
+        <%
             while(sentencia_sql.next())
             {
-                //********************************************
-                // Capa para noticias **********************
-                //******************************************
+        %>
+        
+            <tr>
+                <td><%= sentencia_sql.getString(1)%></td>
+                <td><%= sentencia_sql.getString(5)%></td>
+                <td><%= sentencia_sql.getString(6)%></td>
+                <td><a href='borrar_usuario.jsp?pk=<%= sentencia_sql.getString(1)%>'>Delete</a></td>
+                <td><a href='activar_usuario.jsp?pk=<%= sentencia_sql.getString(1)%>&estado=<%= sentencia_sql.getString(3)%>'>Activar</a></td>
+                <td><a href='desactivar_usuario.jsp?pk=<%= sentencia_sql.getString(1)%>'>Desactivar</a></td>
+                <td>
+                    <%
+                    if(sentencia_sql.getInt(3)==0)
+                    {    
+                    %>
+                        <a href='desactivar_usuario.jsp?pk=<%= sentencia_sql.getString(1)%>'>Activar</a>
+                    <%
+                    }
+                    else
+                    {    
+                    %>
+                        <a href='activar_usuario.jsp?pk=<%= sentencia_sql.getString(1)%>'>Desactivar</a>
+                    <%
+                    }
+                    %>
+                </td>
+            </tr>
+        <%
                 
-                   out.print("<div class=\"bloque\">");
-		   out.print("<p><strong> "+sentencia_sql.getString(2)+"</strong> </p>");
-                   out.print("<p> "+sentencia_sql.getString(3)+" </p>");
-		   out.print("</div>"); 
-                
-                //********************************************
-                //********************************************
             }
+        
+            out.print("</table>");
+        
             sentencia_sql.close();
             sentencia.close();
         }
@@ -124,13 +148,32 @@
             }
         }
         %>          
-                          
+         
+        <form action="insert_usuario.jsp" name="formulario" >
+         <caption><h1>Insertar usuario</h1></caption>
+        <fieldset>
+            <legend>Datos</legend> 
+        Login: <input type="text" id="login" name="login" value="" /> </br>
+           
+               
+         Pass: <input type="password" name="pass" value="" /> <br>
+         Nombre: <input type="text" name="nombre" value="" /> <br>
+         Apellidos: <input type="text" name="apellido" value="" /> <br>
+        
+         
+        </fieldset>
+       <fieldset>
+            <legend>Proceso de Inserción</legend>
+        <input type="submit" value="Registro" name="aceptar"/>
+        <input type="reset" value="Limpiar" name="reset"/>
+       </fieldset> 
+    </form>
 			  <!-- <div class="bloque"> -->
 				
 	</div> <!-- <div id="contenido"> -->
 		
 	<div id="pie">
-			<p>Departamento de Inform&aacute;tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
+			<p>Departamento de Inform�tica  - Universidad de Murcia - I.E.S San Juan Bosco (Lorca-Murcia)</p>
 	</div> </div> 
 <!-- <div id="documento"> -->
 

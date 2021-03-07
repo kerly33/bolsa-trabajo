@@ -5,12 +5,9 @@
 <%@ page import="java.awt.image.*"%>
 <%@ page import="javax.imageio.ImageIO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- 
-Proyecto de Innovaci�n
-Autor: Juan Antonio L�pez Quesada 
-Asignatura: FISIOTERAPIA ESPECIAL: PATOLOG�AS DEL SISTEMA NERVIOSO [08/09] 
-Departamento de Fisioterapia - Universidad de Murcia.
---><head>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Web: Bolsa de Trabajo -INFORM&Aacute;TICA-</title>
 <!-- C�digo del Icono -->
@@ -31,7 +28,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
          <script language="javascript" type="text/javascript">  
             function Valida(formulario)
             { 
-               if (formulario.email_valido.value == 'ok') 
+               if (formulario.login_valido.value == 'ok') 
                {
                   return true;
                } 
@@ -56,14 +53,14 @@ Departamento de Fisioterapia - Universidad de Murcia.
         }
 
         function comprobar() {
-                var email = document.getElementById("email").value;
+                var login = document.getElementById("login").value;
                 peticion_http = inicializa_xhr();
                 if(peticion_http) {
                         peticion_http.onreadystatechange = procesaRespuesta;
-                        peticion_http.open("POST", "check_email.jsp", true);
+                        peticion_http.open("POST", "check_login.jsp", true);
 
                         peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                        peticion_http.send("email="+email);
+                        peticion_http.send("login="+login);
                        
                 }
         }
@@ -71,7 +68,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
         function procesaRespuesta() {
                 if(peticion_http.readyState == READY_STATE_COMPLETE) {
                         if (peticion_http.status == 200) {
-                                var email = document.getElementById("email").value;
+                                var login = document.getElementById("login").value;
                                 var respuesta= peticion_http.responseText;
                                 alert(respuesta);
                                 
@@ -93,12 +90,12 @@ Departamento de Fisioterapia - Universidad de Murcia.
                                 (es decir, la posición inicio está incluida y la posición final no):*/
 
                                 if(estado_respuesta=="si") {
-                                        document.getElementById("disponibilidad").innerHTML = "El nombre elegido ["+email+"] está disponible";
-                                        document.getElementById("email_valido").value="ok";
+                                        document.getElementById("disponibilidad").innerHTML = "El nombre elegido ["+login+"] está disponible";
+                                        document.getElementById("login_valido").value="ok";
                                 }
                                 else {
-                                        document.getElementById("disponibilidad").innerHTML = "NO está disponible el nombre elegido ["+email+"]";
-                                        document.getElementById("email_valido").value="no_ok";
+                                        document.getElementById("disponibilidad").innerHTML = "NO está disponible el nombre elegido ["+login+"]";
+                                        document.getElementById("login_valido").value="no_ok";
                                 }
                         }
                 }
@@ -145,30 +142,20 @@ Departamento de Fisioterapia - Universidad de Murcia.
          <caption><h1>Registro de un usuario</h1></caption>
         <fieldset>
             <legend>Datos</legend> 
-        Email: <input type="text" id="email" name="email" value="" /> 
+        Login: <input type="text" id="login" name="login" value="" /> 
        
         <a id="comprobar" href="#">Comprobar disponibilidad...</a><br />
         <!--  Capa manipulada por AJAX -->
         <div style="hidden" id="disponibilidad"></div>  
 
-        <input type="hidden" name="email_valido" id="login_valido" value="no_ok" />
+        <input type="hidden" name="login_valido" id="login_valido" value="no_ok" />
         
-         Password: <input type="password" name="pass" value="" /> <br>
+         Pass: <input type="pass" name="pass" value="" /> <br>
          Nombre: <input type="text" name="nombre" value="" /> <br>
          Apellidos: <input type="text" name="apellido" value="" /> <br>
          
-        <!-- Fecha Nacimiento: <input type="text" readonly="readonly" name="fecha_nacimiento" id="campo_fecha" />
-         <input type="button" id="lanzador" value="..." /><br> -->
         </fieldset>
          
-        <!-- script que define y configura el calendario-->
-        <!-- <script type="text/javascript">
-            Calendar.setup({
-                inputField     :    "campo_fecha",      // id del campo de texto
-                ifFormat       :    "%d/%m/%Y",       // formato de la fecha, cuando se escriba en el campo de texto
-                button         :    "lanzador"   // el id del botón que lanzará el calendario
-            });
-        </script>-->
         <fieldset>
             <legend>POLITICA DE PRIVACIDAD, SEGURIDAD Y CONFIDENCIALIDAD</legend>
          <textarea name="Teminos_uso" rows="10" cols="50">

@@ -3,8 +3,8 @@
         HttpSession datossesion=request.getSession();
         //********************************
         String urljdbc; 
-        String emailjdbc; 
-        String passwordjdbc; 
+        String loginjdbc; 
+        String passjdbc; 
         //********************************
         Connection conexion=null;
         //*********************************
@@ -14,63 +14,24 @@
         //*********************************
         StringBuffer built_stmt=new StringBuffer();
         //*****************************************
-        String email=request.getParameter("email");
-        String password=request.getParameter("password");
+        String login=request.getParameter("login");
+        String pass=request.getParameter("password");
         String rec=request.getParameter("rec"); 
-        int error=-1;
+        int error=0;
         //**************************************************
             try
             {
               Class.forName("org.mariadb.jdbc.Driver");
               urljdbc = getServletContext().getInitParameter("urljdbc"); 
-              emailjdbc = getServletContext().getInitParameter("loginjdbc"); 
-              passwordjdbc = getServletContext().getInitParameter("passjdbc"); 
-              conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
+              loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
+              passjdbc = getServletContext().getInitParameter("passjdbc"); 
+              conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
               sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
-              built_stmt.append("select * from registrado where login='"+email+"' and pass='"+password+"'");
+             
+              built_stmt.append("select * from usuarios where login='"+login+"' and password='"+pass+"'");
               sentencia_sql= sentencia.executeQuery(built_stmt.toString());
-              if (sentencia_sql.next())
-              {  
-                   if (Integer.valueOf(sentencia_sql.getString("activo")).intValue()==1)
-                   {    
-                       datossesion.setAttribute("email",sentencia_sql.getString("email"));
-                       datossesion.setAttribute("perfil",new Integer(sentencia_sql.getString("perfil")));
-                       datossesion.setAttribute("id_nombre",sentencia_sql.getString("nombre"));
-                       if(rec!=null)
-                       {
-                                   Cookie miCookie=new Cookie("email",sentencia_sql.getString("EMAIL"));
-                                   miCookie.setMaxAge(60*60*24*31);
-                                   miCookie.setPath("/");
-                                   response.addCookie(miCookie);
-                        }
-                        if (Integer.valueOf(sentencia_sql.getString("perfil")).intValue()==1)
-                        {
-                                       %>
-                                    <script language="JavaScript">
-                                        location.href="../perfil_admin/index_administrador.jsp"
-                                    </script>
-                                    <%
-                        }
-                        else
-                        {
-                                %>
-                                    <script language="JavaScript">
-                                        location.href="../perfil_registrado/index_registrado.jsp"
-                                    </script>
-                                 <%
-                        }
-                    }
-                    else
-                    {
-                       error=1;  // el usuario existe en el sistema activo=0
-                    }    
-              }
-              else
-              {
-                  error=2;  // el usuario no existe en el sistema
-              }
-              sentencia_sql.close();
               sentencia.close();
+              error=0;
             }
             catch (ClassNotFoundException error1)
             {
@@ -78,7 +39,7 @@
             }
             catch (SQLException error2)
             {
-                out.println("Error en la sentencia sql que se ha intentado ejecutar (Posible error léxico y/o sintáctico): "+error2.getMessage());
+                out.println("Error en la sentencia sql que se ha intentado ejecutar (Posible error lï¿½xico y/o sintï¿½ctico): "+error2.getMessage());
             }
             catch (Exception error3)
             {
@@ -93,7 +54,7 @@
                 }
                 catch (Exception error3)
                 {
-                out.println("Se ha producido una excepción finally "+ error3.getMessage());
+                out.println("Se ha producido una excepciï¿½n finally "+ error3.getMessage());
                 }
             }
     %>

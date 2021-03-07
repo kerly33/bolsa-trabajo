@@ -1,8 +1,8 @@
 <%@page import="java.lang.*,java.util.*,java.sql.*"%>
 <%
         String urljdbc; 
-        String emailjdbc; 
-        String passwordjdbc; 
+        String loginjdbc; 
+        String passjdbc; 
         //********************************
         Connection conexion=null;
         //*********************************
@@ -12,17 +12,16 @@
         //*********************************
         StringBuffer built_stmt=new StringBuffer();
         //*****************************************
-        String c1=request.getParameter("email");
+        String c1=request.getParameter("login");
         //**************************************************
-            try
-            {
+            try {
               Class.forName("org.mariadb.jdbc.Driver");
               urljdbc = getServletContext().getInitParameter("urljdbc"); 
-              emailjdbc = getServletContext().getInitParameter("emailjdbc"); 
-              passwordjdbc = getServletContext().getInitParameter("passwordjdbc"); 
-              conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
+              loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
+              passjdbc = getServletContext().getInitParameter("passjdbc"); 
+              conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
               sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
-              built_stmt.append("select * from usuarios where email='"+c1+"'");
+              built_stmt.append("select * from usuarios where login='"+c1+"'");
               sentencia_sql= sentencia.executeQuery(built_stmt.toString());
               if (sentencia_sql.next())
               {  
@@ -41,7 +40,7 @@
             }
             catch (SQLException error2)
             {
-                out.println("Error en la sentencia sql que se ha intentado ejecutar (Posible error léxico y/o sintáctico): "+error2.getMessage());
+                out.println("Error en la sentencia sql que se ha intentado ejecutar (Posible error lï¿½xico y/o sintï¿½ctico): "+error2.getMessage());
             }
             catch (Exception error3)
             {
@@ -56,7 +55,7 @@
                 }
                 catch (Exception error3)
                 {
-                out.println("Se ha producido una excepción finally "+ error3.getMessage());
+                out.println("Se ha producido una excepciï¿½n finally "+ error3.getMessage());
                 }
             }
     %>

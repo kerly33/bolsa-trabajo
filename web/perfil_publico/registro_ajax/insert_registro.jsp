@@ -3,8 +3,8 @@
 <%@page import="java.security.MessageDigest"%>
 <%
         String urljdbc; 
-        String emailjdbc; 
-        String passwordjdbc; 
+        String loginjdbc; 
+        String passjdbc; 
         //********************************
         Connection conexion=null;
         //*********************************
@@ -17,23 +17,20 @@
         StringBuffer built_stmt1=new StringBuffer();
         StringBuffer correo=new StringBuffer();
         //************************************************
-        String email=request.getParameter("email");
-        String c2=request.getParameter("password");
-        String c3=request.getParameter("activo");
-        String c4=request.getParameter("perfil");
-        String c5=request.getParameter("nombre");
-        String c6=request.getParameter("apellidos");
+        String login=request.getParameter("login");
+        String c2=request.getParameter("pass");
+        String c3=request.getParameter("nombre");
+        String c4=request.getParameter("apellidos");
         
         //*************************************************
         int estado=0;
         //**************************************************   
-            try
-            {
+            try {
               Class.forName("org.mariadb.jdbc.Driver");
               urljdbc = getServletContext().getInitParameter("urljdbc"); 
-               emailjdbc = getServletContext().getInitParameter("emailjdbc"); 
-               passwordjdbc = getServletContext().getInitParameter("passwordjdbc"); 
-               conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
+               loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
+               passjdbc = getServletContext().getInitParameter("passjdbc"); 
+               conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
                sentencia=conexion.createStatement();
                /**************************************************/
                // Paso 0.- Hashing String with MD5 
@@ -57,7 +54,7 @@
                /**************************************************/
                // Paso 1.- Insertar :  hexString.toString() - pass en md5
                /**************************************************/
-               built_stmt.append("insert into registrado values ('"+email+"','"+c2+"','"+c3+"','"+c4+",'"+c5+"','"+c6+"'");
+               built_stmt.append("insert into usuarios values ('"+login+"','"+c2+"',0,0,'"+c3+"','"+c4+"')");
                sentencia.execute(built_stmt.toString());
                sentencia.close();
                estado=0;
@@ -72,7 +69,7 @@
                try
                {
                     String dirUpload = getServletContext().getRealPath( getServletContext().getInitParameter("dir_user_registrados" ) ); 
-                    File directorio_raiz_user=new File(dirUpload+"/"+email);
+                    File directorio_raiz_user=new File(dirUpload+"/"+login);
                     if (!directorio_raiz_user.exists())
                     {
                         directorio_raiz_user.mkdir();
@@ -83,29 +80,29 @@
                         out.print( error.getMessage());
                }
                //**************************************************  
-               // Paso 3.- Enviar Correo de Activación
+               // Paso 3.- Enviar Correo de Activaciï¿½n
                //**************************************************  
                     try
                     {
                         Properties props = System.getProperties();
-                        // Definir las características del servidor de correo
+                        // Definir las caracterï¿½sticas del servidor de correo
                         props.put("mail.smtp.host", "smtp.gmail.com");
                         props.setProperty("mail.smtp.starttls.enable", "true");
                         props.setProperty("mail.smtp.port","587");
                         props.setProperty("mail.smtp.auth", "true");
-                        // Obtener la sesión
+                        // Obtener la sesiï¿½n
                         Session s = Session.getDefaultInstance(props);
-                        // Creación del mensaje
+                        // Creaciï¿½n del mensaje
                         MimeMessage message = new MimeMessage(s);
                         message.setFrom(new InternetAddress("nitrisimo@gmail.com"));
-                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-                        message.setSubject("Proceso de Activación");
+                        message.addRecipient(Message.RecipientType.TO, new InternetAddress(login));
+                        message.setSubject("Proceso de Activaciï¿½n");
                         StringBuffer texto=new StringBuffer();
-                        texto.append("Realiza la activación...");
-                        texto.append("Copia la siguiente dirección: http://localhost:8084/BolsaTrabajo/perfil_registrado/activa_user.jsp?login="+email);
-                        texto.append("Te aparecerá un formulario de validación (login/password) que deberás rellenar");
+                        texto.append("Realiza la activaciï¿½n...");
+                        texto.append("Copia la siguiente direcciï¿½n: http://localhost:8084/BolsaTrabajo/perfil_registrado/activa_user.jsp?login="+login);
+                        texto.append("Te aparecerï¿½ un formulario de validaciï¿½n (login/password) que deberï¿½s rellenar");
                         message.setText(texto.toString());
-                        // Envio del mensaje de correo electrónico
+                        // Envio del mensaje de correo electrï¿½nico
                         Transport t = s.getTransport("smtp");
                         t.connect("nitrisimo@gmail.com","690707106");
                         t.sendMessage(message,message.getAllRecipients());
@@ -125,7 +122,7 @@
             }
             catch (SQLException error2)
             {
-                out.println("Error en la sentencia sql que se ha intentado ejecutar (Posible error léxico y/o sintáctico): "+error2.getMessage());
+                out.println("Error en la sentencia sql que se ha intentado ejecutar (Posible error lï¿½xico y/o sintï¿½ctico): "+error2.getMessage());
             }
             catch (Exception error3)
             {
@@ -140,7 +137,7 @@
                 }
                 catch (Exception error3)
                 {
-                out.println("Se ha producido una excepción finally "+ error3.getMessage());
+                out.println("Se ha producido una excepciï¿½n finally "+ error3.getMessage());
                 }
             }
     %>

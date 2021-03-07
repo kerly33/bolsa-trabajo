@@ -2,10 +2,10 @@
 <%@page import="java.lang.*,java.util.*,java.sql.*"%>
 <%
     HttpSession datossesion=request.getSession();
-    String email=(String)datossesion.getAttribute("email");
+    String login=(String)datossesion.getAttribute("login");
     Integer perfil=(Integer)datossesion.getAttribute("perfil");
     
-    if (email==null || perfil.intValue()==0)
+    if (login==null || perfil.intValue()==0)
     {
         datossesion.invalidate();
 %>
@@ -16,12 +16,8 @@
     }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- 
-Proyecto de Innovaci�n
-Autor: Juan Antonio L�pez Quesada 
-Asignatura: FISIOTERAPIA ESPECIAL: PATOLOG�AS DEL SISTEMA NERVIOSO [08/09] 
-Departamento de Fisioterapia - Universidad de Murcia.
--->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Web: Bolsa de Trabajo -INFORM&Aacute;TICA-</title>
@@ -43,7 +39,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	
 	<div id="cabecera"> 
 		<p class="titulo_asignatura"> <strong>Web Personal:<br>
-		  <%=email%>
+		  <%=login%>
 		</strong></p>
 		<p class="titulo_asignaturaI"> I.E.S. San Juan Bosco (Lorca-Murcia)<br>
                             Departamento de Inform&aacute;tica<br> 
@@ -52,7 +48,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 
 	<div id="menu">
 	  <ul>
-		  <li><a href="">Administrar Usuarios</a></li>
+		  <li><a href="admin_usuarios.jsp">Administrar Usuarios</a></li>
                   <li><a href="">Administrar Empresa</a></li>
                   <li><a href="">Administrar Oferta</a></li>
                   <li><a href="">Administrar Noticias</a></li>
@@ -62,12 +58,20 @@ Departamento de Fisioterapia - Universidad de Murcia.
   </div>  <!-- <div id="menu"> -->
 	
 	<div id="contenido">
-			  <h1>Web personal <em>del Prof. Juan Antonio Lpez Quesada. </em></h1>
-			                  
+			  <h1>Web personal <em>del Administrador</em></h1>
+             
+        <div class="bloque">
+            <p><br>Hola</br> alumna del <a href=""><em>IES San Juan Bosco</em></a>
+            <table width="50%" border="0" aling="center"></table>
+                </div>
+                <!-- <div class="bloque">-->
+                
+        </div>  <!-- <div id="contenido">-->
+        
         <%        
         String urljdbc;
-        String emailjdbc;
-        String passwordjdbc;
+        String loginjdbc;
+        String passjdbc;
         Connection conexion=null;
         Statement sentencia=null;
         ResultSet sentencia_sql=null;
@@ -76,9 +80,9 @@ Departamento de Fisioterapia - Universidad de Murcia.
         {
             Class.forName("org.mariadb.jdbc.Driver");
             urljdbc = getServletContext().getInitParameter("urljdbc"); 
-            emailjdbc = getServletContext().getInitParameter("emailjdbc"); 
-            passwordjdbc = getServletContext().getInitParameter("passwordjdbc");
-            conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
+            loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
+            passjdbc = getServletContext().getInitParameter("passjdbc");
+            conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
             sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
             sentencia_sql=sentencia.executeQuery("select * from noticias where publico=1");            
             while(sentencia_sql.next())

@@ -2,15 +2,9 @@
 <%@page import="java.lang.*,java.util.*,java.sql.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%
-    
-  String  error=request.getParameter("error");
+        String  error=request.getParameter("error");
 %>
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- 
-Proyecto de Innovación
-Autor: JUAN ANTONIO LOPEZ QUESADA
-Asignatura: FISIOTERAPIA ESPECIAL: PATOLOG�AS DEL SISTEMA NERVIOSO [08/09] 
-Departamento de Fisioterapia - Universidad de Murcia.
--->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>Web: Bolsa de Trabajo -INFORM&Aacute;TICA-</title>
@@ -38,7 +32,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
 		<p class="titulo_asignaturaI"> I.E.S. San Juan Bosco (Lorca-Murcia)<br>
                             Departamento de Inform&aacute;tica<br> 
                             Proyecto ASIR (IAW) </p>
-            <a <img scr="C:\Users\kerly\Documents\bbdd.jpg" width="800" height="414" alt="bbdd" /> </a>
+            <!--imagen-->
         
   </div> <!-- <div id="cabecera">  -->
 
@@ -50,7 +44,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
         <table width="104%"  border="0" align="left">
         <tr>
           <td><div align="left"><span class="Estilo2">Acceso a zona restringuida <br>
-            Login:
+       Login:
             <%
             String cookie=new String();
             int encontrado=-1;
@@ -77,7 +71,7 @@ Departamento de Fisioterapia - Universidad de Murcia.
                   <input name="login" type="text" class="Estilo2" value="<%=cookie%>">
         <br>
         pass:
-        <input name="pass" type="text" class="Estilo2" value="">
+        <input name="pass" type="password" class="Estilo2" value="">
   <br>
   <input name="rec" type="checkbox" class="Estilo2" value="checkbox">
   Recordar los datos<br>
@@ -116,27 +110,33 @@ Departamento de Fisioterapia - Universidad de Murcia.
   </div>  <!-- <div id="menu"> -->
 	
 	<div id="contenido">
-			  <h1>Web personal <em>de Kerly V. Cornejo Patiño </em></h1>
+			  <h1>Web personal <em>de Kerly V. Cornejo Patiño</em></h1>
+                          
+        <div class="bloque">
+            <p><br>Hola</br> alumna del <a href=""><em>IES San Juan Bosco</em></a>
+            <table width="50%" border="0" aling="center"></table>
+                </div>
+                <!-- <div class="bloque">-->
+                
+        </div>  <!-- <div id="contenido">-->
 			                  
         <%        
         String urljdbc;
-        String emailjdbc;
-        String passwordjdbc;
+        String loginjdbc;
+        String passjdbc;
         Connection conexion=null;
         Statement sentencia=null;
         ResultSet sentencia_sql=null;
         //************************************//
-        try
-        {
+        try {
             Class.forName("org.mariadb.jdbc.Driver");
             urljdbc = getServletContext().getInitParameter("urljdbc"); 
-            emailjdbc = getServletContext().getInitParameter("loginjdbc"); 
-            passwordjdbc = getServletContext().getInitParameter("passjdbc");
-            conexion = DriverManager.getConnection(urljdbc,emailjdbc,passwordjdbc);
+            loginjdbc = getServletContext().getInitParameter("loginjdbc"); 
+            passjdbc = getServletContext().getInitParameter("passjdbc");
+            conexion = DriverManager.getConnection(urljdbc,loginjdbc,passjdbc);
             sentencia=conexion.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
             sentencia_sql=sentencia.executeQuery("select * from noticias where publico=0");            
-            while(sentencia_sql.next())
-            {
+            while(sentencia_sql.next()) {
                 //********************************************
                 // Capa para noticias **********************
                 //******************************************
@@ -152,28 +152,22 @@ Departamento de Fisioterapia - Universidad de Murcia.
             sentencia_sql.close();
             sentencia.close();
         }
-        catch (ClassNotFoundException error1)
-        {
+        catch (ClassNotFoundException error1) {
             out.println("Error ClassNotFoundException");
         }
-        catch (SQLException error2)
-        {
+        catch (SQLException error2) {
             out.println("Error en la sentencia sql que se ha intentado ejecutar (Posible error lÃ©xico y/o sintÃ¡ctico): "+error2.getMessage());
             
         }
-        catch (Exception error3)
-        { 
+        catch (Exception error3) { 
             out.println("Error Exception");
         }
-        finally
-        {
-            try
-            {
+        finally {
+            try {
                 if (conexion != null)
                 conexion.close();
             }
-            catch (Exception error3)
-            {
+            catch (Exception error3) {
                    out.println("Error Exception Finally");
             }
         }
@@ -188,7 +182,5 @@ Departamento de Fisioterapia - Universidad de Murcia.
 	</div> </div> 
 <!-- <div id="documento"> -->
 
-
-
-</body></html>
-
+</body>
+</html>
